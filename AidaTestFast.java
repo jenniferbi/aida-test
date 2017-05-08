@@ -38,9 +38,9 @@ class AidaTestFast
     public static void main(String args[]) throws Exception
     {
       // Define the input.
-      //String inputText = "Terry played for Chelsea.";
-      String inputText = new String(Files.readAllBytes(Paths.get("long_input.txt"))); 
-      System.out.println("Read file: " + inputText);
+      String inputText = "[[Terry]] played for [[Chelsea]].";
+      //String inputText = new String(Files.readAllBytes(Paths.get("long_input.txt"))); 
+      //System.out.println("Read file: " + inputText);
 
       // Prepare the input for disambiguation. The Stanford NER will be run
       // to identify names. Strings marked with [[ ]] will also be treated as names.

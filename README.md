@@ -52,4 +52,4 @@ java -Xmx12G -cp "aida/target/aida-3.0.5-SNAPSHOT-jar-with-dependencies.jar:sett
 Disambiguation accuracy and speed depends upon which Disambiguator is used. Options for Disambiguators can be found [here](https://github.com/yago-naga/aida/tree/master/src/mpi/aida/config/settings/disambiguation). Replace the DisambiguationSettings object with any one of these:
 - `CocktailPartyDisambiguationSettings`: No speed optimizations. Takes 30mins for "Michael played for Chelsea.", and 60mins for `long_input.txt`, finding 245 mentions. 
 - `FastLocalKeyphraseBasedDisambiguationSettings`: 45s for "Michael played for Chelsea.". 508s for `long_input.txt`, finding 245 entities. 
-- `FastCocktailPartyDisambiguationSettings`: 45s for "Michael played for Chelsea.", and 397s for `long_input.txt`, finding 245 entities.   
+- `FastCocktailPartyDisambiguationSettings`: 45s for "Michael played for Chelsea.", and 397s for `long_input.txt`, finding 245 entities.  
