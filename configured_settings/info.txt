@@ -1,0 +1,1 @@
+This folder contains setting files with configuration filled in. Replace these files with files in `aida/settings/` if not already done so.
