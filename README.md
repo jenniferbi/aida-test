@@ -1,8 +1,8 @@
 # Set up AIDA and perform some tests
 
 #### Details of AWS instance:
-instance: m4.xlarge
-username: ubuntu
+- instance: m4.xlarge
+- username: ubuntu
 
 #### Setting up AIDA
 Follow instructions in [AIDA README](https://github.com/yago-naga/aida) in sections _Setting up the Entity Repository_ and _Setting up AIDA_. 
