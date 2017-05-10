@@ -53,3 +53,18 @@ Disambiguation accuracy and speed depends upon which Disambiguator is used. Opti
 - `CocktailPartyDisambiguationSettings`: No speed optimizations. Takes 30mins for "Michael played for Chelsea.", and 60mins for `long_input.txt`, finding 245 mentions. 
 - `FastLocalKeyphraseBasedDisambiguationSettings`: 45s for "Michael played for Chelsea.". 508s for `long_input.txt`, finding 245 entities. 
 - `FastCocktailPartyDisambiguationSettings`: 45s for "Michael played for Chelsea.", and 397s for `long_input.txt`, finding 245 entities.  
+- PriorOnlyDisambiguationSettings: 45s for "Michael played for Chelsea."
+
+Classes of interest for candidate lookup:
+```
+- preparation/lookup/EntityLookup.java
+	- fillInCandidateEntities()
+		Retrieves candidate entities for a mention
+		set variable topByPrior as limit candidate limit for each mention (top-k in order of prior probability)
+	- getEntitiesForMention()
+		Actual worker function, defined as abstract in this class and overloaded in DbLookup.java.
+		DBLookup.java calls DataAccess.java
+			DataAccess.java calls DataAccessSQL.java
+				DataAccessSQL.java queries the DB
+- data/Mention.java
+```

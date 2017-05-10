@@ -38,28 +38,42 @@ class AidaTestFast
     public static void main(String args[]) throws Exception
     {
       // Define the input.
-      String inputText = "[[Terry]] played for [[Chelsea]].";
-      //String inputText = new String(Files.readAllBytes(Paths.get("long_input.txt"))); 
+      String inputText1 = "[[Michael]] played for [[Chelsea]].";
+      String inputText2 = new String(Files.readAllBytes(Paths.get("long_input.txt"))); 
       //System.out.println("Read file: " + inputText);
 
       // Prepare the input for disambiguation. The Stanford NER will be run
       // to identify names. Strings marked with [[ ]] will also be treated as names.
       PreparationSettings prepSettings = new StanfordHybridPreparationSettings();
       Preparator p = new Preparator();
-      PreparedInput input = p.prepare(inputText, prepSettings);
-
+      PreparedInput input1 = p.prepare(inputText1, prepSettings);
+      PreparedInput input2 = p.prepare(inputText2, prepSettings);
       // Disambiguate the input with the graph coherence algorithm.
-      DisambiguationSettings disSettings = new FastCocktailPartyDisambiguationSettings();    
+      //DisambiguationSettings disSettings = new ImportanceOnlyDisambiguationSettings();    
+      //DisambiguationSettings disSettings = new FastLocalKeyphraseBasedDisambiguationSettings();    
+      //DisambiguationSettings disSettings = new PriorOnlyDisambiguationSettings();    
+      DisambiguationSettings disSettings = new CocktailPartyDisambiguationSettings();    
+      //DisambiguationSettings disSettings = new FastCocktailPartyDisambiguationSettings();    
       //DisambiguationSettings disSettings = new FastLocalKeyphraseBasedDisambiguationWithNullSettings();    
       //DisambiguationSettings disSettings = new FastLocalKeyphraseBasedDisambiguationSettings();    
-      Disambiguator d = new Disambiguator(input, disSettings);
-      DisambiguationResults results = d.disambiguate();
+      Disambiguator d = new Disambiguator(input1, disSettings);
+      DisambiguationResults results1 = d.disambiguate();
 
       // Print the disambiguation results.
-      for (ResultMention rm : results.getResultMentions()) {
-	ResultEntity re = results.getBestEntity(rm);
+      for (ResultMention rm : results1.getResultMentions()) {
+	ResultEntity re = results1.getBestEntity(rm);
 	System.out.println(rm.getMention() + " -> " + re);
       }
+      
+      d = new Disambiguator(input2, disSettings);
+      DisambiguationResults results2 = d.disambiguate();
+
+      // Print the disambiguation results.
+      for (ResultMention rm : results2.getResultMentions()) {
+	ResultEntity re = results2.getBestEntity(rm);
+	System.out.println(rm.getMention() + " -> " + re);
+      }
+
 
     }
 }
