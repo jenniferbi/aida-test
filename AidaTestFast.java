@@ -49,6 +49,7 @@ class AidaTestFast
       PreparedInput input1 = p.prepare(inputText1, prepSettings);
       PreparedInput input2 = p.prepare(inputText2, prepSettings);
       // Disambiguate the input with the graph coherence algorithm.
+      // Below is a list of possible disambiguators
       //DisambiguationSettings disSettings = new ImportanceOnlyDisambiguationSettings();    
       //DisambiguationSettings disSettings = new FastLocalKeyphraseBasedDisambiguationSettings();    
       //DisambiguationSettings disSettings = new PriorOnlyDisambiguationSettings();    
