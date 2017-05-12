@@ -1,12 +1,12 @@
 # Set up AIDA and perform some tests
 
 #### Details of AWS instance:
-- instance: m4.xlarge
-- OS image: Ubuntu 16.04
-- username: ubuntu
+- instance: m4.xlarge (or anything else with >12GB RAM. GPU not needed)
+- OS image: Ubuntu 16.04 (or any other)
+- username: ubuntu (if Ubuntu OS)
 
 #### Setting up AIDA
-Follow instructions in [AIDA README](https://github.com/yago-naga/aida) in sections _Setting up the Entity Repository_ and _Setting up AIDA_. Java 8 and Maven are the only pre-reqs, you may want to install them before setting AIDA up. 
+Follow instructions in [AIDA README](https://github.com/yago-naga/aida) in sections _Setting up the Entity Repository_ and _Setting up AIDA_. PSQL v9.2, Java 8 and Maven are the only pre-reqs, you may want to install them before setting AIDA up. 
 
 ###### PSQL database v9.2 
 ```
@@ -16,16 +16,16 @@ port: 5432
 pass: 123
 db: yago2
 ```
-Gain admin access:
+You may want to test the database with using admin access:
 ```
 sudo -u postgres psql
 ```
-Gain user access:
+Gain user access for creating a new DB:
 ```
 psql -U kart -h localhost -p 5432
 ```
 
-1. Clone repo, download the .psql database dump, and run bzcat to import it into PSQL. Detailed instructions about this on the AIDA git repo README. 
+1. Clone repo, download the .psql database dump, and run bzcat to import it into PSQL. Detailed instructions about this on the [AIDA git repo README](https://github.com/yago-naga/aida). 
 
 2. Build the dependency JAR (generated in `target/`):
 ```
@@ -36,7 +36,7 @@ mvn package
 
 4. Run `mvn package` again to build JARs to include the settings. If you modify AIDA code, you will need to package the dependencies again. 
 
-5. Compile AidaTest
+5. Compile AidaTest (or AidaTestFast, which provides faster disambiguation in compromise for accuracy)
 ```
 javac -cp "aida/target/aida-3.0.5-SNAPSHOT-jar-with-dependencies.jar:settings/" AidaTest.java
 ```
